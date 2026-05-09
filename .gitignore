@@ -1,0 +1,22 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+.git/
+
+/.ipynb*
+
+
+nomic-v-bunker/
+sos_project_db/
+
+*.swp
+
+.aider*

@@ -1,0 +1,70 @@
+
+import os
+from langchain_community.document_loaders import TextLoader
+from langchain_text_splitters import CharacterTextSplitter
+from langchain_chroma import Chroma
+
+from langchain_ollama import OllamaEmbeddings
+
+from v_filelist import list_file
+
+# Define your target file and the new bunker database name
+working_dir = "./"
+
+DB_DIR = "./nomic-v-bunker"
+
+# 2. EMBEDDING ENGINE, work with Nomic model
+embeddings = OllamaEmbeddings(model="nomic-embed-text")
+
+def vectorize_files():
+    flist = list_file("./")
+    for fpath in flist:
+        put(fpath, chroma_db)
+
+# 3. Persistence Logic: Load or Create the Vector Store
+
+def put(todo_file, chroma_db):
+    if os.path.exists(DB_DIR):
+        print(f"--- Booting up {DB_DIR} memory banks ---")
+        # LangChain handles the embedding function automatically behind the scenes
+        vectorstore = Chroma(persist_directory=DB_DIR, embedding_function=embeddings)
+    else:
+        print(f"--- First run: Indexing {todo_file} into new bunker ---")
+        loader = TextLoader(todo_file)
+        documents = loader.load()
+
+        # Chopping the text into chunks to protect the LLM context window
+        text_splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+        texts = text_splitter.split_documents(documents)
+
+        # Translating to 768-dimensional math and saving to disk
+        vectorstore = Chroma.from_documents(
+            documents=texts,
+            embedding=embeddings,
+            persist_directory=DB_DIR
+        )
+        pass
+    return vectorstore
+
+def get_db():
+    if os.path.exists(DB_DIR):
+        print(f"--- Booting up {DB_DIR} memory banks ---")
+        # LangChain handles the embedding function automatically behind the scenes
+        vectorstore = Chroma(persist_directory=DB_DIR, embedding_function=embeddings)
+        return vectorstore
+    else:
+        raise 'wrong! check you have db.'
+
+###
+#bash
+#
+#pip install langchain-chroma
+#
+# Legacy Note: In older versions of LangChain (pre-v0.1/v0.2), 
+# the import was typically from langchain.vectorstores import Chroma or 
+# from langchain_community.vectorstores import Chroma. 
+# Using the new langchain-chroma package is recommended for 
+# better maintenance and specific feature updates.
+
+
+

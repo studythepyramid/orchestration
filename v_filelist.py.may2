@@ -1,0 +1,19 @@
+
+# build a file list that going to be put into vectorstore
+
+import os
+
+def list_files(mypath: str = "./") -> list[str]:
+    """
+    read .gitignore if exists
+    build a  list of file accordingly
+    check it's text file, utf-8 or ascii, human-readable at least
+    make it all with abs path
+    """
+
+    file_list = []
+
+    return file_list
+    pass
+
+

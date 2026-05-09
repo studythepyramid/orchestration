@@ -1,0 +1,55 @@
+
+[base]
+DB_DIR = "./nomic-v-bunker" # keep for history
+#embeddings = OllamaEmbeddings(model="nomic-embed-text")
+#return Chroma(persist_directory=DB_DIR, embedding_function=embeddings)
+
+VECTOR_DB_NAME = "nomic-v-bunker"
+VECTOR_MODEL = "nomic-embed-text"
+
+TMP_TERMINAL_LOG = "/tmp/olddog.terminal.md"
+
+BASE_URL_OLLAMA = "http://127.0.0.1:11434"
+
+func_dict = {
+
+        "get_history.py": "get history of terminal.",
+        "host_context.py": "get machine info, hostnamectl, cpu, os, etc.",
+        "v_filelist": "find file for later chopping",
+        "v_put1.py": "put file content to Chroma"
+        }
+
+
+# ~1500pm, may. 6, 2026
+dir_snapshot = """
+autofix.py  :  the initial auto fix the network approache
+btest.py : langchain? 
+ddgs.agent.py : ?
+e.py : temporary, learning
+f.py : temporary, learning
+g.py : temporary, learning
+get_history.py 
+h.py
+host_context.py : get states of host machine, hostnamectl, cpu, os, etc.,
+i.py
+ipy-saved.py
+is_text.py
+la.py
+lc1.py
+main.py
+network_scan.py
+nscan.py : evolved from network_scan, get network info.
+oa.py : tmp
+ob.py : tmp
+oc.py : tmp
+searxng.agent.py : web search with searxng, server is in ailaba, lxc, docker
+settings.py
+v.nomic.py : tmp? use nomic embedding model to do persistance
+v.put.py : put files into Chroma db, vectorize .md files, %run in ipy
+v.put1.py : update v.put.py
+v.query.py : ?
+v_filelist.py : choose files that going to feed to vectorization
+v_put1.py : change name for v.put1
+v_query.py : query the db, it's semantic query
+watcher.py : the old pipe work with the ~/bin/ shell get feeding and invoke the LCEL
+"""
