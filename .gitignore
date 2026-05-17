@@ -7,7 +7,7 @@ wheels/
 *.egg-info
 
 # Virtual environments
-.venv
+.venv/
 
 .git/
 
@@ -20,3 +20,15 @@ sos_project_db/
 *.swp
 
 .aider*
+
+sos_project_db/
+nomic_v_bunker/
+
+.ipynb_checkpoints/
+
+
+tmp/
+
+.idea/
+
+

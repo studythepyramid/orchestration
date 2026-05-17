@@ -12,12 +12,12 @@ STAGE_FILE = "/tmp/olddog.term.md"
 
 """
 Description:
-    1, the context management is challenging, 
+    1, the context management is challenging,
        how to maintain a recent clean history to terminal actions.
     2, If we stream the output of LLM to shell,
        we should avoid to feed the output of LLM back to the LLM,
        should we?
-    3, how to make the loop task driven, 
+    3, how to make the loop task driven,
        such as networking diagnosis or debug the python scripts?
        let's focus on networking things.
 """
@@ -34,7 +34,7 @@ def run_cmd(bash_command: str):
 
     try:
         result = subprocess.run(
-                bash_command, shell=True, 
+                bash_command, shell=True,
                 capture_output=True, text=True)
         print("\n--- Execution Result ---")
         print(result.stdout)
@@ -48,10 +48,10 @@ def run_cmd(bash_command: str):
 # to manage the states and history
 class States_Singleton:
     # history with time tags
-    history: [str] 
+    history: list[str] = ["",]
 
     # the unique identification of which terminal get debugging
-    terminal_info: str
+    terminal_info: str = ""  # basedpyright?
 
     # If user get chance to change model, the context get even crucially important
     llm_model: str
@@ -67,7 +67,7 @@ class States_Singleton:
 
 
 def deprecated_autonomous_terminal_agent(question: str):
-    db = Chroma(persist_directory=DB_DIR, 
+    db = Chroma(persist_directory=DB_DIR,
                 embedding_function=OllamaEmbeddings(model="nomic-embed-text"))
     llm = OllamaLLM(model="gemma3:4b", base_url="http://127.0.0.1:11434")
 
@@ -82,8 +82,8 @@ def deprecated_autonomous_terminal_agent(question: str):
 
     You MUST respond using exactly this format:
 
-    THOUGHT: [Explain exactly what you see in the logs, 
-    what you think the error is, 
+    THOUGHT: [Explain exactly what you see in the logs,
+    what you think the error is,
     and why your next command will help diagnose or fix it.]
     COMMAND:
     ```bash
@@ -114,7 +114,7 @@ def deprecated_autonomous_terminal_agent(question: str):
 
 def network_copilot_loop():
 
-    db = Chroma(persist_directory=DB_DIR, 
+    db = Chroma(persist_directory=DB_DIR,
                 embedding_function=OllamaEmbeddings(model="nomic-embed-text"))
     llm = OllamaLLM(model="gemma3:4b", base_url="http://127.0.0.1:11434")
 
@@ -131,8 +131,8 @@ def network_copilot_loop():
 
     You MUST respond using exactly this format:
 
-    THOUGHT: [Explain exactly what you see in the logs, 
-    what you think the error is, 
+    THOUGHT: [Explain exactly what you see in the logs,
+    what you think the error is,
     and why your next command will help diagnose or fix it.]
     COMMAND:
     ```bash
@@ -159,9 +159,9 @@ def network_copilot_loop():
 
         # THE PAUSE (State Management)
         print("\n\n[USER ACTION REQUIRED]")
-        print("""Options: 
-        [ y ] Execute AI command 
-        [ q ] Quit | 
+        print("""Options:
+        [ y ] Execute AI command
+        [ q ] Quit |
         [Type a question to ask Gemma]""")
         user_input = input(">> ")
 
