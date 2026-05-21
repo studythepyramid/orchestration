@@ -1,3 +1,15 @@
+#!/home/za/dev/orchestration/.venv/bin/python
+
+#!/usr/bin/env -S uv run --script
+# /// script
+# dependencies = [
+#   "ollama",
+#   "google-genai",
+# ]
+# ///
+# This is option for 'uv' run global links every time:
+
+# old #! , this can be used in dev/orchestration/ folder only
 #!/usr/bin/env python3
 import re
 import subprocess

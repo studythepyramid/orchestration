@@ -1,4 +1,6 @@
-#!/usr/bin/env uv run --script
+#!/home/za/dev/orchestration/.venv/bin/python
+
+#!/usr/bin/env -S uv run --script
 # /// script
 # dependencies = [
 #   "ollama",
@@ -86,3 +88,20 @@ def main():
     else:
         # Fall back to your existing local Ollama chat execution block
         run_local_ollama(system_instruction, prompt_content)
+
+
+if __name__ == "__main__":
+    #!/usr/bin/env uv run
+    # /// script
+    # dependencies = ["google-genai"]
+    # ///
+
+    #from google import genai
+    #import os
+
+    client = genai.Client(api_key=os.environ.get("GEMINI_API_KEY"))
+    response = client.models.generate_content(
+        model="gemini-2.5-flash",
+        contents="Confirm connectivity: say 'SOS System Online'"
+    )
+    print(response.text)
