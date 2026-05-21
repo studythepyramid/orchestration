@@ -1,27 +1,27 @@
-
-DB_DIR = "./nomic-v-bunker" # keep for history
-#embeddings = OllamaEmbeddings(model="nomic-embed-text")
-#return Chroma(persist_directory=DB_DIR, embedding_function=embeddings)
+DB_DIR = "./nomic-v-bunker"  # keep for history
+# embeddings = OllamaEmbeddings(model="nomic-embed-text")
+# return Chroma(persist_directory=DB_DIR, embedding_function=embeddings)
 
 VECTOR_DB_NAME = "nomic-v-bunker"
 VECTOR_MODEL = "nomic-embed-text"
 
 TMP_TERMINAL_LOG = "/tmp/olddog.terminal.md"
 
-BASE_URL_OLLAMA = "http://127.0.0.1:11434"
+OLLAMA_BASE_URL = "http://127.0.0.1:11434"
 
 func_dict = {
-
-        "get_history.py": "get history of terminal.",
-        "host_context.py": "get machine info",
-        "v_filelist": "find file for later chopping",
-        "v_put1.py": "put file content to Chroma"
-        }
+    "get_history.py": "get history of terminal.",
+    "host_context.py": "get machine info",
+    "v_filelist": "find file for later chopping",
+    "v_put1.py": "put file content to Chroma",
+    "...": "...",
+    "hi.py": "summarize man page",
+}
 
 
 dir_snapshot = """
 autofix.py  :  the initial auto fix the network approache
-btest.py : langchain? 
+btest.py : langchain?
 ddgs.agent.py : ?
 e.py
 f.py

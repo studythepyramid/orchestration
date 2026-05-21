@@ -1,0 +1,14 @@
+gemma4:e2b: 131072
+gemma4:e4b: 131072
+all-minilm:latest: 256
+nomic-embed-text:latest: 8192
+phi4-mini:3.8b: 131072
+chat-apr-22-gemma:latest: 131072
+qwen2.5:14b: 32768
+qwen2.5:latest: 32768
+codellama:latest: 16384
+qwen2.5-coder:7b: 32768
+deepseek-coder:6.7b: 16384
+llama3.2:latest: 131072
+gemma3:1b: 32768
+gemma3:4b: 131072
